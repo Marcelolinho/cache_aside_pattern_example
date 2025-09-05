@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface ViaCepValidationAdapter {
 
     @GetMapping("/{cep}/json")
-    AddressDto getAddressByCep(String cep);
+    Optional<AddressDto> getAddressByCep(String cep);
 }

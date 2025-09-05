@@ -12,9 +12,9 @@ public class AddressDto {
 
     private String logradouro;
 
-    private String complemento;
-
     private String bairro;
 
-    private String localidade;
+    private String estado;
+
+    private String uf;
 }

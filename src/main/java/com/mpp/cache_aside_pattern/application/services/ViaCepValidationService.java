@@ -2,7 +2,6 @@ package com.mpp.cache_aside_pattern.application.services;
 
 import com.mpp.cache_aside_pattern.business.AddressBo;
 import com.mpp.cache_aside_pattern.infrastructure.adapters.inbound.exceptions.InvalidCepException;
-import com.mpp.cache_aside_pattern.infrastructure.adapters.inbound.mappers.AddressMapper;
 import com.mpp.cache_aside_pattern.infrastructure.adapters.outbound.cepValidation.ViaCepValidationAdapter;
 import com.mpp.cache_aside_pattern.infrastructure.adapters.outbound.cepValidation.dto.AddressDto;
 import com.mpp.cache_aside_pattern.ports.outbound.client.ViaCepClientPort;
@@ -31,7 +30,7 @@ public class ViaCepValidationService implements ViaCepClientPort {
                 throw new InvalidCepException(String.format("The postal code is invalid, %s does not exists!", cep));
             }
 
-            AddressDto addressDto = viaCepValidationAdapter.getAddressByCep(cep).or;
+
         } catch (FeignException.FeignClientException e) {
             throw new RuntimeException("Couldn't finish request: ", e.getCause());
         }
