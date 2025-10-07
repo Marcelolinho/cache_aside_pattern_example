@@ -2,35 +2,31 @@ package com.mpp.cache_aside_pattern.application.services;
 
 import com.mpp.cache_aside_pattern.business.AddressBo;
 import com.mpp.cache_aside_pattern.infrastructure.adapters.inbound.exceptions.InvalidCepException;
+import com.mpp.cache_aside_pattern.infrastructure.adapters.inbound.mappers.AddressMapper;
 import com.mpp.cache_aside_pattern.infrastructure.adapters.outbound.cepValidation.ViaCepValidationAdapter;
 import com.mpp.cache_aside_pattern.infrastructure.adapters.outbound.cepValidation.dto.AddressDto;
 import com.mpp.cache_aside_pattern.ports.outbound.client.ViaCepClientPort;
 import feign.FeignException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service("viaCepValidationService")
-public class ViaCepValidationService implements ViaCepClientPort {
+public class AddressValidationService implements ViaCepClientPort {
 
     private final ViaCepValidationAdapter viaCepValidationAdapter;
-    private final AddressMapper addressMapper;
 
-    public ViaCepValidationService(ViaCepValidationAdapter viaCepValidationAdapter, AddressMapper addressMapper) {
+    public AddressValidationService(ViaCepValidationAdapter viaCepValidationAdapter) {
         this.viaCepValidationAdapter = viaCepValidationAdapter;
-        this.addressMapper = addressMapper;
     }
 
     @Override
     public AddressBo validateCep(String cep) {
         try {
-            Optional<AddressDto> address = viaCepValidationAdapter.getAddressByCep(cep);
+            AddressDto address = viaCepValidationAdapter.getAddressByCep(cep)
+                                 .orElseThrow(() -> new InvalidCepException(String.format("The postal code is invalid, %s does not exists!", cep)));
 
-            if (address.isEmpty()) {
-                throw new InvalidCepException(String.format("The postal code is invalid, %s does not exists!", cep));
-            }
-
-
+            return AddressMapper.dtoToBo(address);
         } catch (FeignException.FeignClientException e) {
             throw new RuntimeException("Couldn't finish request: ", e.getCause());
         }

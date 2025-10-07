@@ -11,18 +11,18 @@ public class AddressBo {
 
     private String state;
 
-    private String uf;
+    private String country;
 
     public AddressBo() {
     }
 
-    public AddressBo(Long id, String postalCode, String street, String neighbourhood, String state, String uf) {
+    public AddressBo(Long id, String postalCode, String street, String neighbourhood, String state, String country) {
         this.id = id;
         this.postalCode = postalCode;
         this.street = street;
         this.neighbourhood = neighbourhood;
         this.state = state;
-        this.uf = uf;
+        this.country = country;
     }
 
     public Long getId() {
@@ -65,12 +65,12 @@ public class AddressBo {
         this.state = state;
     }
 
-    public String getUf() {
-        return uf;
+    public String getCountry() {
+        return country;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class AddressBo {
                 ", street='" + street + '\'' +
                 ", neighbourhood='" + neighbourhood + '\'' +
                 ", state='" + state + '\'' +
-                ", uf='" + uf + '\'' +
+                ", uf='" + country + '\'' +
                 '}';
     }
 }

@@ -16,5 +16,5 @@ public class AddressDto {
 
     private String estado;
 
-    private String uf;
+    private String pais;
 }

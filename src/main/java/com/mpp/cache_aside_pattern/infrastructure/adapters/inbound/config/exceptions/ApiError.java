@@ -3,6 +3,7 @@ package com.mpp.cache_aside_pattern.infrastructure.adapters.inbound.config.excep
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -10,9 +11,7 @@ import java.util.Date;
 public class ApiError {
     public String message;
 
-    public Date timestamp;
+    public LocalDate timestamp;
 
     public Integer status;
-
-    public String error;
 }

@@ -10,5 +10,18 @@ services:
     command: redis-server --appendonly yes --requirepass marcelo
     restart: always
 
+  db:
+    image: postgres:16
+    container_name: relational_db
+    environment:
+      POSTGRES_DB: cache_aside_pattern
+      POSTGRES_USER: marcelo
+      POSTGRES_PASSWORD: 123456#
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres-data:/var/lib/postgres/data"
+
 volumes:
   redis_data:
+  postgres-data:

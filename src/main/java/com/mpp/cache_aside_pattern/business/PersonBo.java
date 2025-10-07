@@ -1,6 +1,6 @@
 package com.mpp.cache_aside_pattern.business;
 
-import com.mpp.cache_aside_pattern.business.enums.EnumCpfSituation;
+import com.mpp.cache_aside_pattern.business.enums.CpfSituationEnum;
 
 public class PersonBo {
 
@@ -12,14 +12,14 @@ public class PersonBo {
 
     private String cpf;
 
-    private EnumCpfSituation cpfSituation;
+    private CpfSituationEnum cpfSituation;
 
     private AddressBo address;
 
     public PersonBo() {
     }
 
-    public PersonBo(Long id, String name, String surname, String cpf, EnumCpfSituation cpfSituation, AddressBo address) {
+    public PersonBo(Long id, String name, String surname, String cpf, CpfSituationEnum cpfSituation, AddressBo address) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -37,11 +37,11 @@ public class PersonBo {
         }
     }
 
-    public EnumCpfSituation validateCpf(String cpf) {
+    public CpfSituationEnum validateCpf(String cpf) {
         if ((cpf.replace(".", "")).length() == 12) {
-            return EnumCpfSituation.VALID;
+            return CpfSituationEnum.VALID;
         }
-        return EnumCpfSituation.INVALID;
+        return CpfSituationEnum.INVALID;
     }
 
     public Long getId() {
@@ -76,11 +76,11 @@ public class PersonBo {
         this.cpf = cpf;
     }
 
-    public EnumCpfSituation getCpfSituation() {
+    public CpfSituationEnum getCpfSituation() {
         return cpfSituation;
     }
 
-    public void setCpfSituation(EnumCpfSituation cpfSituation) {
+    public void setCpfSituation(CpfSituationEnum cpfSituation) {
         this.cpfSituation = cpfSituation;
     }
 
